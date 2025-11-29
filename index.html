@@ -7,10 +7,10 @@
     <style>
         /* --- Üldised seaded ja fondid --- */
         :root {
-            --primary-dark: #0f172a; /* Sügav öösinine */
+            --primary-dark: #0f172a;
             --primary-blue: #1e293b;
-            --accent-gold: #fbbf24;  /* Soe jõulukuld */
-            --accent-red: #ef4444;   /* Hoiatav punane */
+            --accent-gold: #fbbf24;
+            --accent-red: #ef4444;
             --text-light: #f8fafc;
             --text-dark: #334155;
             --bg-light: #f1f5f9;
@@ -29,7 +29,7 @@
         a { text-decoration: none; color: inherit; transition: 0.3s; }
         ul { list-style: none; padding: 0; }
 
-        /* --- Hero Sektsioon (Lumesadu ja Atmosfäär) --- */
+        /* --- Hero Sektsioon --- */
         .hero {
             position: relative;
             height: 80vh;
@@ -64,7 +64,7 @@
             opacity: 0.9;
         }
 
-        /* Lumesaju animatsioon (CSS Only) */
+        /* Lumesaju animatsioon */
         .snowflake {
             position: absolute;
             top: -10px;
@@ -179,6 +179,7 @@
             transition: background 0.3s;
             position: relative;
             overflow: hidden;
+            min-height: 150px; /* Tagab, et kast ei hüppaks liiga palju */
         }
 
         .solution-item:hover {
@@ -203,6 +204,7 @@
         .solution-content {
             flex: 1;
             z-index: 2;
+            transition: flex 0.4s ease; /* Sujuv teksti liikumine */
         }
 
         .solution-content h3 {
@@ -215,11 +217,13 @@
             opacity: 0.9;
         }
 
-        /* --- Hõljuva pildi stiilid --- */
+        /* --- Hõljuva pildi stiilid (UNIVERSAALNE KÕIGILE) --- */
+        
         .hover-image {
-            display: none;
+            display: none; /* Vaikimisi peidetud */
             max-width: 350px;
-            height: auto;
+            max-height: 300px;
+            object-fit: cover; /* Tagab, et pilt ei veni välja */
             border-radius: 8px;
             box-shadow: 0 10px 20px rgba(0,0,0,0.3);
             margin-left: 20px;
@@ -244,30 +248,25 @@
             color: white;
         }
 
-        /* --- Responsive Style --- */
+        /* --- Responsive Logic --- */
         
-        /* Mobiilivaade (kuni 900px laius) */
         @media (max-width: 900px) {
             .hero h1 { font-size: 2.2rem; }
             .section-title { font-size: 2rem; }
             .solution-item { flex-direction: column; }
-            .hover-image { display: none !important; }
+            .hover-image { display: none !important; } /* Mobiilis pilte ei näita */
         }
 
-        /* Arvutivaade (laiem kui 900px) */
         @media (min-width: 901px) {
-
-            /* Punktid 3 ja 5 – pilt tuleb nähtavale */
-            #solution-3-container:hover .hover-image,
-            #solution-5-container:hover .hover-image {
+            /* See reegel kehtib nüüd KÕIGILE solution-item kastidele */
+            .solution-item:hover .hover-image {
                 display: block;
                 animation: slideInRight 0.4s ease-out forwards;
             }
-
-            /* Tekstiblokk kitsam, et pildile jääks ruumi */
-            #solution-3-container:hover .solution-content,
-            #solution-5-container:hover .solution-content {
-                flex: 0 1 60%;
+            
+            /* Tekst tõmbub koomale */
+            .solution-item:hover .solution-content {
+                 flex: 0 1 55%; 
             }
         }
 
@@ -300,7 +299,7 @@
                 <p class="quote-text">"Jõulud, mis peaksid olema ühtekuuluvuse ja rõõmu aeg, võivad nende laste jaoks olla hoopis täis hirmu, ärevust ja ebakindlust.“</p>
                 <div><p class="quote-author">Anu Kivi</p><p>Tervisekassa sõltuvushäirete teenusejuht</p></div>
             </div>
-            <div class="quote-card">
+             <div class="quote-card">
                 <p class="quote-text">"Suures pildid saame öelda, et kui jõulud peaksid pakkuma inimestele rõõmu, siis on olnud mitmeid juhtumeid, et pere väikseimad, lapsed ja noored, on pidanud kutsuma politsei..."</p>
                 <div><p class="quote-author">Marit Abram</p><p>PPA vanemkomissar</p></div>
             </div>
@@ -317,6 +316,7 @@
                     <h3>Näita head eeskuju</h3>
                     <p>Lapsed jälgivad täiskasvanute käitumist; kui vanemad tõstavad pokaali, tundub joomine normaalne. Pidude pidamine ilma alkoholita vähendab noorte tulevast joovet ja kujundab tervislikke harjumusi.</p>
                 </div>
+                <img src="pilt_1.jpg" alt="Eeskuju näitamine" class="hover-image">
             </div>
 
             <div class="solution-item">
@@ -325,15 +325,16 @@
                     <h3>Keskendu päris mälestustele</h3>
                     <p>Alkohol võib tuua kaasa tülisid ja segadust, jättes lapsed ilma soojadest perekondlikest hetkedest. Kainena saad luua uusi traditsioone: küpsetage koos, mängige mänge, meisterdage kaarte või minge jalutama.</p>
                 </div>
+                <img src="pilt_2.jpg" alt="Päris mälestused" class="hover-image">
             </div>
 
-            <div class="solution-item" id="solution-3-container">
+            <div class="solution-item">
                 <div class="number-badge">3</div>
                 <div class="solution-content">
                     <h3>Raha jääb kingituste ja tegevuste jaoks</h3>
-                    <p>Jõuluajal on niigi palju väljaminekuid ja paljudel peredel on rahaliselt keeruline. Alkohoolsete jookide ostmine pühadeks on kallis, kuid see on investeering, mis kahjustab tarbija tervist ja ohustab lapse oodatud ilusaid pühi. Alkoholist loobumine suunab pereeelarve hoopis mänguasjade, raamatute või ühiste kogemuste peale, mis on päris investeering lastesse.</p>
+                    <p>Jõuluajal on niigi palju väljaminekuid ja paljudel peredel on rahaliselt keeruline. Alkoholist loobumine suunab pereeelarve hoopis mänguasjade, raamatute või ühiste kogemuste peale – see on päris investeering lastesse.</p>
                 </div>
-                <img src="Kallis_kuusk.jpg" alt="Kurb laps ja isa alkoholikastiga" class="hover-image">
+                <img src="Kallis_kuusk.jpg" alt="Raha jääb alles" class="hover-image">
             </div>
 
             <div class="solution-item">
@@ -342,15 +343,16 @@
                     <h3>Loo turvaline keskkond</h3>
                     <p>Ilutulestiku käsitsemiseks, kelgumägedel sõitmiseks ja küünalde süütamiseks on vaja tähelepanu ja kainelt mõtlemist. Kaine vanem hindab riske paremini ja vähendab õnnetuste ohtu.</p>
                 </div>
+                <img src="pilt_4.jpg" alt="Turvaline keskkond" class="hover-image">
             </div>
 
-            <div class="solution-item" id="solution-5-container">
+            <div class="solution-item">
                 <div class="number-badge">5</div>
                 <div class="solution-content">
                     <h3>Aeg enda ja pere jaoks</h3>
-                    <p>Alkoholi tarbimine raskendab järgmist päeva, põhjustades väsimust ja halb enesetunnet. Ole olemas oma laste ja pere jaoks, sada protsenti kohal.</p>
+                    <p>Alkoholi tarbimine raskendab järgmist päeva, põhjustades väsimust ja halb enesetunnet. Ole olemas oma laste ja pere jaoks – 100% kohal.</p>
                 </div>
-                <img src="100%_kohal.jpg" alt="Kaine vanem koos lapsega" class="hover-image">
+                <img src="pilt_5.jpg" alt="Aeg perele" class="hover-image">
             </div>
 
         </div>
