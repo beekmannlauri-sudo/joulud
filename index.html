@@ -269,21 +269,17 @@
 
         /* --- Hõljuv pilt (pehme) --- */
         .hover-image {
-    max-width: 350px;
-    max-height: 300px;
+    max-width: 330px;
+    max-height: 280px;
     object-fit: cover;
     border-radius: 8px;
     box-shadow: 0 10px 20px rgba(0,0,0,0.3);
     margin-left: 20px;
     z-index: 2;
 
-    opacity: 0;
-    transform: translateX(12px);
-
-    /* aeglasem ja pehmem */
-    transition:
-        opacity 1.8s ease-out,
-        transform 1.8s ease-out;
+    opacity: 0;              /* alguses nähtamatu */
+    transform: none;         /* ei nihku, et kast ei hüppaks */
+    transition: opacity 0.8s ease-out;  /* ainult pehme läbipaistvuse muutus */
     display: block;
 }
 
@@ -316,14 +312,16 @@
         }
 
         @media (min-width: 901px) {
-            .solution-item:hover .hover-image {
-                opacity: 1;
-                transform: translateX(0);
-            }
-            .solution-item:hover .solution-content {
-                flex: 0 1 60%;
-            }
-        }
+    .solution-item:hover .hover-image {
+        opacity: 1;      /* lihtsalt sujuv fade-in */
+    }
+
+    /* Teksti laiust enam ei muuda – see hoiab kaardi stabiilsena */
+    .solution-item:hover .solution-content {
+        flex: 1;
+    }
+}
+
     </style>
 </head>
 
