@@ -143,17 +143,30 @@
         .quote-author {
             font-weight: bold;
             color: var(--primary-dark);
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.2rem;
+            display: block;
         }
-
-        .quote-source {
-            font-size: 0.85rem;
+        
+        .quote-role {
+            font-size: 0.9rem;
             color: #64748b;
-            text-decoration: underline;
+            margin-bottom: 0.8rem;
+            display: block;
         }
 
-        .quote-source:hover {
+        /* --- Allikaviite stiil --- */
+        .quote-source-link {
+            font-size: 0.85rem;
+            color: #2563eb; /* Sinine link */
+            text-decoration: none;
+            border-bottom: 1px dotted #2563eb;
+            display: inline-block;
+            margin-top: 5px;
+        }
+
+        .quote-source-link:hover {
             color: var(--accent-red);
+            border-bottom-color: var(--accent-red);
         }
 
         /* --- Lahendused (5 Punkti) --- */
@@ -179,7 +192,7 @@
             transition: background 0.3s;
             position: relative;
             overflow: hidden;
-            min-height: 150px; /* Tagab, et kast ei hüppaks liiga palju */
+            min-height: 150px;
         }
 
         .solution-item:hover {
@@ -204,7 +217,7 @@
         .solution-content {
             flex: 1;
             z-index: 2;
-            transition: flex 0.4s ease; /* Sujuv teksti liikumine */
+            transition: flex 0.4s ease;
         }
 
         .solution-content h3 {
@@ -217,13 +230,12 @@
             opacity: 0.9;
         }
 
-        /* --- Hõljuva pildi stiilid (UNIVERSAALNE KÕIGILE) --- */
-        
+        /* --- Hõljuva pildi stiilid --- */
         .hover-image {
-            display: none; /* Vaikimisi peidetud */
+            display: none;
             max-width: 350px;
             max-height: 300px;
-            object-fit: cover; /* Tagab, et pilt ei veni välja */
+            object-fit: cover;
             border-radius: 8px;
             box-shadow: 0 10px 20px rgba(0,0,0,0.3);
             margin-left: 20px;
@@ -249,27 +261,22 @@
         }
 
         /* --- Responsive Logic --- */
-        
         @media (max-width: 900px) {
             .hero h1 { font-size: 2.2rem; }
             .section-title { font-size: 2rem; }
             .solution-item { flex-direction: column; }
-            .hover-image { display: none !important; } /* Mobiilis pilte ei näita */
+            .hover-image { display: none !important; }
         }
 
         @media (min-width: 901px) {
-            /* See reegel kehtib nüüd KÕIGILE solution-item kastidele */
             .solution-item:hover .hover-image {
                 display: block;
                 animation: slideInRight 0.4s ease-out forwards;
             }
-            
-            /* Tekst tõmbub koomale */
             .solution-item:hover .solution-content {
                  flex: 0 1 55%; 
             }
         }
-
     </style>
 </head>
 <body>
@@ -291,18 +298,70 @@
     <section class="section-quotes">
         <h2 class="section-title">Reaalsus pühade ajal</h2>
         <div class="quotes-grid">
+            
             <div class="quote-card">
                 <p class="quote-text">"Ma arvan, et kõige kurvem ongi see, et täiskasvanud lahendavad enda konflikte, aga nad ei pane ennast lapse mõttemaailma kuidagi. Ja vaesed lapsed, kes seda kõike pealt näevad..."</p>
-                <div><p class="quote-author">Taavi Kirss</p><p>Põhja prefektuuri operatiivjuht</p></div>
+                <div>
+                    <span class="quote-author">Taavi Kirss</span>
+                    <span class="quote-role">Põhja prefektuuri operatiivjuht</span>
+                    <a href="https://www.err.ee/1608831418/politsei-tabas-puhade-ajal-purjus-juhte-ja-sai-rohkem-perevagivallateateid" target="_blank" class="quote-source-link">Loe allikast (ERR) &rarr;</a>
+                </div>
             </div>
+
             <div class="quote-card">
-                <p class="quote-text">"Jõulud, mis peaksid olema ühtekuuluvuse ja rõõmu aeg, võivad nende laste jaoks olla hoopis täis hirmu, ärevust ja ebakindlust.“</p>
-                <div><p class="quote-author">Anu Kivi</p><p>Tervisekassa sõltuvushäirete teenusejuht</p></div>
+                <p class="quote-text">"Põhilised tervisemured võib-olla ongi seotud kas üleliigse söömisega... aga loomulikult ka liigne alkoholi tarvitamine, mis just pikkade pühade ajal võib ohtu kujutada.“</p>
+                <div>
+                    <span class="quote-author">Eva-Maria Sentifoli-Saluveer</span>
+                    <span class="quote-role">Perekliiniku õendusjuht</span>
+                    <a href="https://www.err.ee/1609204639/puhadeaeg-toi-emo-desse-tavaparasemast-enam-patsiente" target="_blank" class="quote-source-link">Loe allikast (ERR) &rarr;</a>
+                </div>
             </div>
-             <div class="quote-card">
-                <p class="quote-text">"Suures pildid saame öelda, et kui jõulud peaksid pakkuma inimestele rõõmu, siis on olnud mitmeid juhtumeid, et pere väikseimad, lapsed ja noored, on pidanud kutsuma politsei..."</p>
-                <div><p class="quote-author">Marit Abram</p><p>PPA vanemkomissar</p></div>
+
+            <div class="quote-card">
+                <p class="quote-text">"Pühade ajal sagenevad EMOsse pöördumised sageli just liigse alkoholi tarvitamise tõttu... Alkoholi mõjul satutakse sagedamini kaklustega lõppevatesse konfliktidesse."</p>
+                <div>
+                    <span class="quote-author">EMO nõuanded</span>
+                    <span class="quote-role">Kliinikum.ee</span>
+                    <a href="https://www.kliinikum.ee/emo-nouanded-puhadeajaks/" target="_blank" class="quote-source-link">Loe allikast &rarr;</a>
+                </div>
             </div>
+
+            <div class="quote-card">
+                <p class="quote-text">"On olnud mitmeid juhtumeid, et pere väikseimad, lapsed ja noored, on pidanud kutsuma politsei, sest vanemad tülitsevad. Kindlasti on seal põhjuseks alkohol."</p>
+                <div>
+                    <span class="quote-author">Marit Abram</span>
+                    <span class="quote-role">PPA vanemkomissar</span>
+                    <a href="https://www.err.ee/1609560697/politsei-on-pidanud-puhade-ajal-ohjeldama-perevagivalda" target="_blank" class="quote-source-link">Loe allikast (ERR) &rarr;</a>
+                </div>
+            </div>
+
+            <div class="quote-card">
+                <p class="quote-text">"Ligikaudu 70 000–75 000 last elab peres, kus vähemalt üks vanem kannatab alkoholitarvitamise häire all. Jõulud võivad nende laste jaoks olla hoopis täis hirmu ja ebakindlust.“</p>
+                <div>
+                    <span class="quote-author">Anu Kivi</span>
+                    <span class="quote-role">Tervisekassa teenusejuht</span>
+                    <a href="https://tervisekassa.ee/blogi/joulude-mitu-nagu" target="_blank" class="quote-source-link">Loe allikast (Tervisekassa) &rarr;</a>
+                </div>
+            </div>
+
+            <div class="quote-card">
+                <p class="quote-text">"Isegi üks alkohoolne jook võib kahjustada meie otsustusvõimet, kuigi me ise ei pruugi seda märgata... kipume jätkama teatud tegevustega, olles ekslikus veendumuses, et teeme õige valiku."</p>
+                <div>
+                    <span class="quote-author">Medical News Today</span>
+                    <span class="quote-role">Teadusuudised</span>
+                    <a href="https://www.medicalnewstoday.com/articles/321255#Drinking-impairs-decision-making" target="_blank" class="quote-source-link">Loe uuringust &rarr;</a>
+                </div>
+            </div>
+
+            <div class="quote-card">
+                <p class="quote-text">"Isegi madal hooldaja alkoholitarbimine oli seotud suurema tõenäosuse ja raskusastmega laste tahtmatute vigastuste puhul."</p>
+                <div>
+                    <span class="quote-author">Journal of Pediatric Psychology</span>
+                    <span class="quote-role">Teadusajakiri</span>
+                    <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC2671980/" target="_blank" class="quote-source-link">Loe uuringust &rarr;</a>
+                </div>
+            </div>
+
         </div>
     </section>
 
