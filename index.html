@@ -172,11 +172,13 @@
             display: flex;
             gap: 20px;
             margin-bottom: 2rem;
-            align-items: flex-start;
+            align-items: flex-start; /* Joondab teksti ja pildi ülaservad */
             background: rgba(255,255,255,0.05);
             padding: 20px;
             border-radius: 12px;
             transition: background 0.3s;
+            position: relative; /* Vajalik pildi positsioneerimiseks */
+            overflow: hidden; /* Hoiab pildi ilusti kasti sees */
         }
 
         .solution-item:hover {
@@ -195,6 +197,12 @@
             font-weight: bold;
             font-size: 1.2rem;
             flex-shrink: 0;
+            z-index: 2;
+        }
+
+        .solution-content {
+            flex: 1; /* Laseb tekstiosal võtta vaba ruumi */
+            z-index: 2;
         }
 
         .solution-content h3 {
@@ -205,6 +213,25 @@
         .solution-content p {
             margin: 0;
             opacity: 0.9;
+        }
+
+        /* --- Hõljuva pildi stiilid (UUS OSA) --- */
+        
+        /* Vaikimisi on pilt peidetud */
+        .hover-image {
+            display: none;
+            max-width: 350px; /* Pildi maksimaalne laius */
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+            margin-left: 20px;
+            z-index: 2;
+        }
+
+        /* Animatsioon pildi ilmumiseks */
+        @keyframes slideInRight {
+            from { opacity: 0; transform: translateX(50px); }
+            to { opacity: 1; transform: translateX(0); }
         }
 
         /* --- Footer --- */
@@ -220,12 +247,31 @@
             color: white;
         }
 
-        /* --- Responsive Mobile --- */
-        @media (max-width: 768px) {
+        /* --- Responsive Style --- */
+        
+        /* Mobiilivaade (kuni 900px laius) */
+        @media (max-width: 900px) {
             .hero h1 { font-size: 2.2rem; }
             .section-title { font-size: 2rem; }
+            /* Mobiilis on punktid üksteise all */
             .solution-item { flex-direction: column; }
+            /* Mobiilis peidame pildi kindlalt ära, et see paigutust ei lõhuks */
+            .hover-image { display: none !important; }
         }
+
+        /* Arvutivaade (laiem kui 900px) - Siin aktiveerime pildi hoveri */
+        @media (min-width: 901px) {
+            /* Kui hiir on spetsiifilise ID-ga kasti peal, näita pilti */
+            #solution-3-container:hover .hover-image {
+                display: block;
+                animation: slideInRight 0.4s ease-out forwards;
+            }
+            /* Kui pilt ilmub, teeme teksti ala veidi kitsamaks */
+            #solution-3-container:hover .solution-content {
+                 flex: 0 1 60%; /* Võtab ~60% laiusest */
+            }
+        }
+
     </style>
 </head>
 <body>
@@ -247,67 +293,18 @@
     <section class="section-quotes">
         <h2 class="section-title">Reaalsus pühade ajal</h2>
         <div class="quotes-grid">
-            
             <div class="quote-card">
-                <p class="quote-text">"Ma arvan, et kõige kurvem ongi see, et täiskasvanud lahendavad enda konflikte, aga nad ei pane ennast lapse mõttemaailma kuidagi. Ja vaesed lapsed, kes seda kõike pealt näevad ja püüavad siis kuidagi abi kutsuda."</p>
-                <div>
-                    <p class="quote-author">Taavi Kirss</p>
-                    <p>Põhja prefektuuri operatiivjuht</p>
-                    <a href="https://www.err.ee/1608831418/politsei-tabas-puhade-ajal-purjus-juhte-ja-sai-rohkem-perevagivallateateid" target="_blank" class="quote-source">Loe lähemalt (ERR)</a>
-                </div>
+                <p class="quote-text">"Ma arvan, et kõige kurvem ongi see, et täiskasvanud lahendavad enda konflikte, aga nad ei pane ennast lapse mõttemaailma kuidagi. Ja vaesed lapsed, kes seda kõike pealt näevad..."</p>
+                <div><p class="quote-author">Taavi Kirss</p><p>Põhja prefektuuri operatiivjuht</p></div>
             </div>
-
             <div class="quote-card">
-                <p class="quote-text">"Põhilised tervisemured võib-olla ongi seotud kas üleliigse söömisega... aga loomulikult ka liigne alkoholi tarvitamine, mis just pikkade pühade ajal, kui veel mitu päeva ka järjest neid pidustusi on olnud, võib ohtu kujutada.“</p>
-                <div>
-                    <p class="quote-author">Eva-Maria Sentifoli-Saluveer</p>
-                    <p>Perekliiniku õendusjuht</p>
-                    <a href="https://www.err.ee/1609204639/puhadeaeg-toi-emo-desse-tavaparasemast-enam-patsiente" target="_blank" class="quote-source">Loe lähemalt (ERR)</a>
-                </div>
+                <p class="quote-text">"Jõulud, mis peaksid olema ühtekuuluvuse ja rõõmu aeg, võivad nende laste jaoks olla hoopis täis hirmu, ärevust ja ebakindlust.“</p>
+                <div><p class="quote-author">Anu Kivi</p><p>Tervisekassa sõltuvushäirete teenusejuht</p></div>
             </div>
-
-            <div class="quote-card">
-                <p class="quote-text">"Pühade ajal sagenevad EMOsse pöördumised sageli just liigse alkoholi tarvitamise tõttu... Alkoholi mõjul satutakse sagedamini kaklustega lõppevatesse konfliktidesse, kukutakse nii ebasobivates kohtades turnides kui ka niisama libastudes."</p>
-                <div>
-                    <p class="quote-author">EMO nõuanded pühadeajaks</p>
-                    <a href="https://www.kliinikum.ee/emo-nouanded-puhadeajaks/" target="_blank" class="quote-source">Loe lähemalt (Kliinikum)</a>
-                </div>
+             <div class="quote-card">
+                <p class="quote-text">"Suures pildid saame öelda, et kui jõulud peaksid pakkuma inimestele rõõmu, siis on olnud mitmeid juhtumeid, et pere väikseimad, lapsed ja noored, on pidanud kutsuma politsei..."</p>
+                <div><p class="quote-author">Marit Abram</p><p>PPA vanemkomissar</p></div>
             </div>
-
-            <div class="quote-card">
-                <p class="quote-text">"Suures pildid saame öelda, et kui jõulud peaksid pakkuma inimestele rõõmu, siis on olnud mitmeid juhtumeid, et pere väikseimad, lapsed ja noored, on pidanud kutsuma politsei, sest vanemad tülitsevad. Kindlasti on seal põhjuseks alkohol."</p>
-                <div>
-                    <p class="quote-author">Marit Abram</p>
-                    <p>PPA vanemkomissar</p>
-                    <a href="https://www.err.ee/1609560697/politsei-on-pidanud-puhade-ajal-ohjeldama-perevagivalda" target="_blank" class="quote-source">Loe lähemalt (ERR)</a>
-                </div>
-            </div>
-
-            <div class="quote-card">
-                <p class="quote-text">"Ligikaudu 70 000–75 000 last elab peres, kus vähemalt üks vanem kannatab alkoholitarvitamise häire all. Jõulud, mis peaksid olema ühtekuuluvuse ja rõõmu aeg, võivad nende laste jaoks olla hoopis täis hirmu, ärevust ja ebakindlust."</p>
-                <div>
-                    <p class="quote-author">Anu Kivi</p>
-                    <p>Tervisekassa sõltuvushäirete teenusejuht</p>
-                    <a href="https://tervisekassa.ee/blogi/joulude-mitu-nagu" target="_blank" class="quote-source">Loe lähemalt (Tervisekassa)</a>
-                </div>
-            </div>
-
-            <div class="quote-card">
-                <p class="quote-text">"Teadlaste sõnul viitavad nende leiud sellele, et isegi üks alkohoolne jook võib kahjustada meie otsustusvõimet, kuigi me ise ei pruugi seda märgata... kipume me jätkama teatud füüsiliste tegevustega, olles ekslikus veendumuses, et teeme õige valiku."</p>
-                <div>
-                    <p class="quote-author">Medical News Today</p>
-                    <a href="https://www.medicalnewstoday.com/articles/321255#Drinking-impairs-decision-making" target="_blank" class="quote-source">Loe uuringut</a>
-                </div>
-            </div>
-
-            <div class="quote-card">
-                <p class="quote-text">"Isegi madal hooldaja alkoholitarbimine oli seotud suurema tõenäosuse ja raskusastmega laste tahtmatute vigastuste puhul, samas kui lähedasem hooldaja järelevalve vähendas nii vigastuste esinemist kui ka raskusastet."</p>
-                <div>
-                    <p class="quote-author">Journal of Pediatric Psychology</p>
-                    <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC2671980/" target="_blank" class="quote-source">Loe uuringut</a>
-                </div>
-            </div>
-
         </div>
     </section>
 
@@ -327,16 +324,17 @@
                 <div class="number-badge">2</div>
                 <div class="solution-content">
                     <h3>Keskendu päris mälestustele</h3>
-                    <p>Alkohol võib tuua kaasa tülisid ja segadust, jättes lapsed ilma soojadest perekondlikest hetkedest. Kainena saad luua uusi traditsioone: küpsetage koos, mängige mänge, meisterdage kaarte või minge jalutama – looge mälestusi, mis jäävad kestma.</p>
+                    <p>Alkohol võib tuua kaasa tülisid ja segadust, jättes lapsed ilma soojadest perekondlikest hetkedest. Kainena saad luua uusi traditsioone: küpsetage koos, mängige mänge, meisterdage kaarte või minge jalutama.</p>
                 </div>
             </div>
 
-            <div class="solution-item">
+            <div class="solution-item" id="solution-3-container">
                 <div class="number-badge">3</div>
                 <div class="solution-content">
                     <h3>Raha jääb kingituste ja tegevuste jaoks</h3>
                     <p>Jõuluajal on niigi palju väljaminekuid ja paljudel peredel on rahaliselt keeruline. Alkohoolsete jookide ostmine pühadeks on kallis, kuid see on investeering, mis kahjustab tarbija tervist ja ohustab lapse oodatud ilusaid pühi. Alkoholist loobumine suunab pereeelarve hoopis mänguasjade, raamatute või ühiste kogemuste peale – see on päris investeering lastesse.</p>
                 </div>
+                <img src="image_0.png" alt="Kurb laps ja isa alkoholikastiga" class="hover-image">
             </div>
 
             <div class="solution-item">
