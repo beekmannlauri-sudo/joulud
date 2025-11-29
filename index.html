@@ -353,6 +353,27 @@
     </div>
     <img src="100%_kohal.jpg" alt="Kaine vanem koos lapsega" class="hover-image">
 </div>
+/* Arvutivaade (laiem kui 900px) - Siin aktiveerime pildi hoveri */
+@media (min-width: 901px) {
+
+    /* Punkt 3 (juba olemas) */
+    #solution-3-container:hover .hover-image {
+        display: block;
+        animation: slideInRight 0.4s ease-out forwards;
+    }
+    #solution-3-container:hover .solution-content {
+        flex: 0 1 60%;
+    }
+
+    /* ⭐ Punkt 5 (lisa siia) */
+    #solution-5-container:hover .hover-image {
+        display: block;
+        animation: slideInRight 0.4s ease-out forwards;
+    }
+    #solution-5-container:hover .solution-content {
+        flex: 0 1 60%;
+    }
+}
 
         </div>
     </section>
