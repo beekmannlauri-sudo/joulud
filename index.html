@@ -295,58 +295,41 @@
             opacity: 0.9;
         }
 
-        /* --- Hõljuva pildi stiilid (Solution sektsioonile) --- */
-        .hover-image {
-            display: none;
-            max-width: 350px;
-            max-height: 300px;
-            object-fit: cover;
-            border-radius: 8px;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
-            margin-left: 20px;
-            z-index: 2;
-        }
+        /* --- Hõljuva pildi stiilid (mahedam animatsioon) --- */
 
-        @keyframes slideInRight {
-            from { opacity: 0; transform: translateX(50px); }
-            to { opacity: 1; transform: translateX(0); }
-        }
+.hover-image {
+    display: none;
+    opacity: 0;
+    max-width: 350px;
+    max-height: 300px;
+    object-fit: cover;
+    border-radius: 8px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+    margin-left: 20px;
+    z-index: 2;
+    transition: opacity 0.45s ease-in-out;
+}
 
-        /* --- Footer --- */
-        footer {
-            background: #000;
-            color: #94a3b8;
-            text-align: center;
-            padding: 2rem;
-            font-size: 0.9rem;
-        }
-        
-        footer a:hover {
-            color: white;
-        }
+/* Pehmem animatsioon */
+@keyframes slideInRight {
+    from { opacity: 0; transform: translateX(20px); }
+    to { opacity: 1; transform: translateX(0); }
+}
 
-        /* --- Responsive Logic --- */
-        @media (max-width: 900px) {
-            .hero h1 { font-size: 2.2rem; }
-            .section-title { font-size: 2rem; }
-            .solution-item { flex-direction: column; }
-            .hover-image { display: none !important; }
+/* Töölaua hover-loogika */
+@media (min-width: 901px) {
+    .solution-item:hover .hover-image {
+        display: block;
+        opacity: 1;
+        animation: slideInRight 0.45s ease-out forwards;
+    }
 
-            /* Tsitaatide mobiilivaade */
-            .quote-row { flex-direction: column !important; } /* Pilt alati all või üleval */
-            .quote-text-box { padding: 2rem; }
-            .quote-image-box { height: 250px; flex: none; } /* Kindel kõrgus pildile mobiilis */
-        }
+    .solution-item:hover .solution-content {
+        flex: 0 1 60%;
+        transition: all 0.35s ease-in-out;
+    }
+}
 
-        @media (min-width: 901px) {
-            .solution-item:hover .hover-image {
-                display: block;
-                animation: slideInRight 0.4s ease-out forwards;
-            }
-            .solution-item:hover .solution-content {
-                 flex: 0 1 55%; 
-            }
-        }
     </style>
 </head>
 <body>
