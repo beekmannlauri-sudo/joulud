@@ -295,7 +295,32 @@
             padding: 2rem;
             font-size: 0.9rem;
         }
+ .facebook-section {
+            background: #0b1220;
+            padding: 3rem 1.5rem;
+        }
 
+        .facebook-section-inner {
+            max-width: 1000px;
+            margin: 0 auto;
+            text-align: center;
+            color: #e5e7eb;
+        }
+
+        .facebook-section-inner h2 {
+            margin: 0 0 1rem 0;
+            font-size: 2rem;
+        }
+
+        .facebook-section-inner p {
+            margin: 0 0 2rem 0;
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+
+        .fb-page {
+            margin: 0 auto;
+        }
         footer a {
             color: #e5e7eb;
         }
@@ -330,6 +355,12 @@
 </head>
 
 <body>
+<body>
+
+    <div id="fb-root"></div>
+    <script async defer crossorigin="anonymous"
+        src="https://connect.facebook.net/et_EE/sdk.js#xfbml=1&version=v19.0"
+        nonce="kainedjoulud"></script>
 
     <header class="hero">
         <div class="hero-content">
@@ -499,6 +530,27 @@
                 <img src="100_kohal.jpg" alt="Aeg perele" class="hover-image">
             </div>
 
+        </div>
+    </section>
+    <section class="facebook-section">
+        <div class="facebook-section-inner">
+            <h2>Jälgi kampaaniat ka Facebookis</h2>
+            <p>Kingi lapsele kained jõulud Facebooki lehel jagame lugusid, materjale ja mõtteid, kuidas teha pühad laste jaoks turvalisemaks ja rahulikumaks.</p>
+
+            <div class="fb-page"
+                 data-href="https://www.facebook.com/kainedjoulud"
+                 data-tabs="timeline"
+                 data-width="1000"
+                 data-height="300"
+                 data-small-header="false"
+                 data-adapt-container-width="true"
+                 data-hide-cover="false"
+                 data-show-facepile="true">
+                <blockquote cite="https://www.facebook.com/kainedjoulud"
+                            class="fb-xfbml-parse-ignore">
+                    <a href="https://www.facebook.com/kainedjoulud">Kingi lapsele kained jõulud</a>
+                </blockquote>
+            </div>
         </div>
     </section>
 
